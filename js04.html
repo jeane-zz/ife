@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任务4</title>
+</head>
+<body>
+	<form>
+		<input type="text" name="" id= "input">
+<!-- 		<button>左入</button>
+		<button>右入</button>
+		<button>左出</button>
+		<button>右出</button> -->
+	</form>
+	<ul id="arr">
+		<li>11</li>
+		<li>22</li>
+		<li>33</li>
+		<li>44</li>
+	</ul>
+
+	<script type="text/javascript">
+		var arr = []
+		var input = document.getElementById('input')
+		input.onkeyup = function(event){
+			console.log(event)
+			if(event.keyCode == 13) {
+				event.preventDefault()
+				if(typeof Number(input.value) == 'number'){
+					arr.push(input.value)
+				}
+				else {
+					console.log('请输入数字')
+				}
+			}
+		}
+
+		var ularr = document.getElementById('arr')
+
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+<body>
+
+  <h3>污染城市列表</h3>
+  <ul id="aqi-list">
+<!--   
+    <li>第一名：福州（样例），10</li>
+      <li>第二名：福州（样例），10</li> -->
+  </ul>
+
+<script type="text/javascript">
+
+var aqiData = [
+  ["北京", 90],
+  ["上海", 50],
+  ["福州", 10],
+  ["广州", 50],
+  ["成都", 90],
+  ["西安", 100]
+];
+
+(function () {
+
+  /*
+  在注释下方编写代码
+  遍历读取aqiData中各个城市的数据
+  将空气质量指数大于60的城市显示到aqi-list的列表中
+  */
+
+
+})();
+
+function bubble(arr){
+	var i, j,temp;
+	for(i = 0; i < arr.length; i++){
+		for(j = i + 1; j < arr.length; j++){
+			if(arr[i] < arr[j]){
+				temp = arr[i]
+				arr[i] = arr[j]
+				arr[j] = temp
+			}
+		}
+	}
+	console.log(arr.toString())
+	return arr
+}
+
+function bubble2(arr){
+	console.log(arr.toString())
+	var i, j,temp
+	for(i = 0; i < arr.length; i++){
+		for(j = i + 1; j < arr.length; j++){
+			if(arr[i][1] < arr[j][1]){
+				temp = arr[i]
+				arr[i] = arr[j]
+				arr[j] = temp
+			}
+		}
+	}
+	console.log(arr.toString())
+	return arr
+}
+
+function select(arr) {
+	console.log(arr.toString())
+	var i, j, max, temp
+	for(i = 0; i <arr.length; i++){
+		max = i
+		for(j = i + 1; j < arr.length; j++){
+			if(arr[j] > arr[max]){
+				max = j
+			}
+		}
+		if(i < max){
+			temp = arr[i]
+			arr[i] = arr[max]
+			arr[max] = temp
+		}
+	}
+	console.log(arr.toString())
+	return arr
+}
+var a = [9,5,3,7,0,1,8,2]
+// select(a)
+
+function quick(arr, start, end) {
+//	console.log(arr)
+	if(start == undefined){
+		start = 0
+	}
+	if(end == undefined){
+		end =arr.length - 1
+	}
+	
+	if(start >= end) {
+	//	console.log(arr)
+		return arr
+	}
+
+	var i = start, j = end
+	var key = arr[i]
+	
+	while(i < j){
+		while(i < j && key <= arr[j]){
+			j--
+		}
+		arr[i] = arr[j]
+		while(i < j && key >= arr[i]){
+			i++
+		}
+		arr[j] = arr[i]
+	}
+	a[i] = key
+	quick(arr, start, i - 1)
+	quick(arr, j + 1, end)
+}
+
+// var b = quick(a)
+
+</script>
+</body>
+</html>
