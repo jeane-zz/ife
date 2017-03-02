@@ -24,6 +24,9 @@ var aqiData = [
   ["西安", 100]
 ];
 
+var num = ['一','二','三','四','五','六','七','八','九']
+var ul = document.querySelector('ul');
+// var aul = document.querySelector('ul')
 (function () {
 
   /*
@@ -31,7 +34,16 @@ var aqiData = [
   遍历读取aqiData中各个城市的数据
   将空气质量指数大于60的城市显示到aqi-list的列表中
   */
+  bubble2(aqiData)
 
+  for(var i = 0; i < aqiData.length; i++){
+  	if(aqiData[i][1] > 60){
+  		var li = document.createElement('li')
+  		var text = '第'+ num[i]+'名：' + aqiData[i][0]+"," +aqiData[i][1] 
+  		li.innerHTML = text
+  		ul.appendChild(li)
+  	}
+  }
 
 })();
 
@@ -51,7 +63,7 @@ function bubble(arr){
 }
 
 function bubble2(arr){
-	console.log(arr.toString())
+	// console.log(arr.toString())
 	var i, j,temp
 	for(i = 0; i < arr.length; i++){
 		for(j = i + 1; j < arr.length; j++){
@@ -62,10 +74,11 @@ function bubble2(arr){
 			}
 		}
 	}
-	console.log(arr.toString())
+	// console.log(arr.toString())
 	return arr
 }
 
+// 选择排序
 function select(arr) {
 	console.log(arr.toString())
 	var i, j, max, temp
@@ -85,9 +98,8 @@ function select(arr) {
 	console.log(arr.toString())
 	return arr
 }
-var a = [9,5,3,7,0,1,8,2]
-// select(a)
 
+// 快排练习
 function quick(arr, start, end) {
 //	console.log(arr)
 	if(start == undefined){
