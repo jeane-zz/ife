@@ -110,21 +110,59 @@
 		}
 		render()
 	})
+// 初始版本没有动态排序的效果
+	// btnSort.addEventListener('click',function(event){
+	// 	event.preventDefault()
+	// 	let i, j,temp;
+	// 	for(i = 0; i < numArr.length; i++){
+	// 		for(j = i + 1; j < numArr.length; j++){
+	// 			if(numArr[i] > numArr[j]){
+	// 				temp = numArr[i]
+	// 				numArr[i] = numArr[j]
+	// 				numArr[j] = temp
+	// 				//  死循环没有效果
+
+	// 				// var start = Date.now()
+	// 				// for(var m = 0; ; m++){
+	// 				// 	if((Date.now() - start) > 1000){
+	// 				// 		console.log(start +"1000" + Date.now() )
+	// 				// 		break
+	// 				// 	}
+	// 				// }
+
+	// 				render()
+	// 			}
+	// 		}
+	// 	}
+	// 	console.log(numArr.toString())
+	// 	render()
+	// 	return numArr
+	// })
 
 	btnSort.addEventListener('click',function(event){
 		event.preventDefault()
-		let i, j,temp;
-		for(i = 0; i < numArr.length; i++){
-			for(j = i + 1; j < numArr.length; j++){
-				if(numArr[i] > numArr[j]){
-					temp = numArr[i]
-					numArr[i] = numArr[j]
-					numArr[j] = temp
-					render()
+		let i = 0, j = 0,temp;
+		var time = setInterval(function(){
+			if(i < numArr.length){
+				if(j < numArr.length - i){
+					if(numArr[j] > numArr[j + 1]){
+						temp = numArr[j + 1]
+						numArr[j + 1] = numArr[j]
+						numArr[j] = temp
+						render()
+					}
+					j++
 				}
+				else {
+					i++
+					j = 0
+				}
+			}else {
+				clearInterval(time)
+				return
 			}
-		}
-		console.log(numArr.toString())
+		},100)
+		// console.log(numArr.toString())
 		render()
 		return numArr
 	})
