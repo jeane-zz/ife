@@ -6,7 +6,7 @@
 	<style type="text/css">
 		li {
 			background: #99c;
-			width: 50px;
+			width: 20px;
 			list-style: none;
 			float: left;
 			margin-right: 10px;
@@ -22,6 +22,8 @@
 		<button id="rightIn">右入</button>
 		<button id="leftOut">左出</button>
 		<button id="rightOut">右出</button>
+
+		<button id= "sort">排序</button>
 	</form>
 	<ul id="arr">
 		
@@ -34,15 +36,20 @@
 	var btnLeftOut = document.querySelector('#leftOut')
 	var btnRightIn = document.querySelector('#rightIn')
 	var btnRightOut = document.querySelector('#rightOut')
+	var btnSort = document.querySelector('#sort')
 
-	var numArr = []	
+	var numArr = [12,45,76,31,53,88,20,75,18,35]	
 
 	function check(){
 		if(Number.isNaN(Number(ainput.value))){
 			alert( '输入的数据有误')
 			ainput.value = ''
 			return false
-		}else{
+		}else if(Number(ainput.value) < 10 || Number(ainput.value)> 100){
+			alert('请输入10到100之间的数字')
+			ainput.value = ''
+			return false
+		}else {
 			return true
 		}
 	}
@@ -53,6 +60,7 @@
 			var ali = document.createElement('li')
 			var text = document.createTextNode(numArr[i])
 			ali.appendChild(text)
+			ali.style.height = numArr[i] + 'px'
 			aul.appendChild(ali)
 			ainput.value = ''
 		}
@@ -67,7 +75,9 @@
 	btnLeftIn.addEventListener('click',function(event){
 		event.preventDefault()
 		if(check()){
-			numArr.unshift(Number(ainput.value))
+			if(numArr.length < 60){
+				numArr.unshift(Number(ainput.value))
+			}
 		}
 		render()
 	})
@@ -75,7 +85,9 @@
 	btnRightIn.addEventListener('click',function(event){
 		event.preventDefault()
 		if(check()){
-			numArr.push(Number(ainput.value))
+			if(numArr.length < 60){
+				numArr.push(Number(ainput.value))
+			}
 		}
 		render()
 	})
@@ -98,6 +110,25 @@
 		}
 		render()
 	})
+
+	btnSort.addEventListener('click',function(event){
+		event.preventDefault()
+		let i, j,temp;
+		for(i = 0; i < numArr.length; i++){
+			for(j = i + 1; j < numArr.length; j++){
+				if(numArr[i] > numArr[j]){
+					temp = numArr[i]
+					numArr[i] = numArr[j]
+					numArr[j] = temp
+					render()
+				}
+			}
+		}
+		console.log(numArr.toString())
+		render()
+		return numArr
+	})
+
 	</script>
 </body>
 </html>
