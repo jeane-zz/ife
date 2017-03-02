@@ -28,6 +28,7 @@
   <button id="sort-btn">排序</button>
 
 <script type="text/javascript">
+var arrNum = ['一','二','三','四','五','六','七','八','九','十']
 
 /**
  * getData方法
@@ -87,7 +88,7 @@ function render(data) {
     var ali = document.createElement('li')
     // var ab = document.createElement('b')
     // ab.innerText = data[i][1]
-    ali.innerHTML = data[i][0]+` ： <b>${data[i][1]}</b>`
+    ali.innerHTML =`第${arrNum[i]}名 ： `+ data[i][0]+` ： <b>${data[i][1]}</b>`
     aul.appendChild(ali)
   }
 }
