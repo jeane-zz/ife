@@ -20,20 +20,32 @@
 			if(Number.isNaN(Number(input.value))){
 				output.innerHTML = '输入的数据有误'
 			}else {
+<<<<<<< HEAD
 				output.innerHTML =  DX(Number(input.value)) + "  " + transToChineseNum(Number(input.value))
+=======
+				output.innerHTML =  Number(input.value)
+>>>>>>> be2920685a968703d43885896e5021afcf1ec3dc
 			}
 		})
 
 		function transToChineseNum(n) {
+<<<<<<< HEAD
 			if(!/^(0|[1-9]\d*)(\.\d+)?$/.test(n)){
 				return '数据非法'
 			}
 			// var unit = '千百拾亿千百拾万千百拾个分厘毫丝忽微纤沙尘'
 			var unit = '千百拾亿千百拾万千百拾个分厘'
+=======
+			if(/^(0|[1-9]\d*)(\.\d+)?$/.test(n)){
+				return '数据非法'
+			}
+			var unit = '千百拾亿千百拾万千百拾个分厘毫丝忽微纤沙尘'
+>>>>>>> be2920685a968703d43885896e5021afcf1ec3dc
 			var str = ''
 			n += '00'
 			var p = n.indexOf('.')
 			if(p >= 0){
+<<<<<<< HEAD
 				n = n.substring(0, p) + n.substr(p + 1, 2)
 			}
 			unit = unit.substr(unit.length - n.length)
@@ -46,6 +58,11 @@
 					  .replace(/(亿)万|一(拾)/g,"$1$2")
 					  .replace(/^个零?|零厘/g,"")
 					  .replace(/个$/g, "")
+=======
+				n = n.substring(0, p) + n.substr(p+1)
+			}
+			unit = unit.substr(unit.length - n.length)
+>>>>>>> be2920685a968703d43885896e5021afcf1ec3dc
 		}
 
 
