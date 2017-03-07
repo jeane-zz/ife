@@ -6,7 +6,16 @@
 </head>
 <body>
 	<script type="text/javascript">
+		// 生成1 - 100 
 		var a = Array(100).fill(0).map((value, index) => index)
+
+		var b = new Array(100)
+		a.forEach((value) =>{
+			var index = parseInt(Math.random()*100)
+			if(b[index] == undefined){
+				b[index] = value
+			}
+		})
 	</script>
 </body>
 </html>

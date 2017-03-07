@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>算式计算器</title>
+</head>
+<body>
+	<input type="text" name="" id="dataInput">
+	<button id="submit">确认</button>
+	<div id="dataOutput"></div>
+	<script src="calc.js"></script>
+	<script type="text/javascript">
+		var arr = []
+		var submitBtn = document.querySelector('#submit')
+		var inputArea = document.querySelector('#dataInput')
+		var outputArea = document.querySelector('#dataOutput')
+
+		submitBtn.addEventListener('click', function(){
+			var inputStr = inputArea.value.replace(/(\W)/g, ' $& ')
+			console.log(evalRpn(dal2Rpn(inputStr)))
+			outputArea.innerHTML =inputStr + '=' + evalRpn(dal2Rpn(inputStr))	
+
+	</script>
+</body>
+</html>
