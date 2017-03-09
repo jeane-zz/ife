@@ -2,24 +2,56 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>算式计算器</title>
+	<title>仅支持10以下的算式计算器</title>
 </head>
 <body>
+<section>
+	<button class="btn">0</button>
+	<button class="btn">1</button>
+	<button class="btn">2</button>
+	<button class="btn">3</button>
+	<button class="btn">4</button>
+	<button class="btn">5</button>
+	<button class="btn">6</button>
+	<button class="btn">7</button>
+	<button class="btn">8</button>
+	<button class="btn">9</button>
+	<button class="btn">+</button>
+	<button class="btn">-</button>
+	<button class="btn">*</button>
+	<button class="btn">/</button>
+	<button class="btn">%</button>
+	<button class="btn">^</button>
+	<button class="btn">(</button>
+	<button class="btn">)</button>
+<!-- 	<button class="btn" id="back">←</button>
+	<button class="btn" id="cale">=</button> -->
+</section>
 	<input type="text" name="" id="dataInput">
 	<button id="submit">确认</button>
 	<div id="dataOutput"></div>
+	<div id="errTip"></div>
+	
 	<script src="calc.js"></script>
 	<script type="text/javascript">
+
 		var arr = []
 		var submitBtn = document.querySelector('#submit')
 		var inputArea = document.querySelector('#dataInput')
 		var outputArea = document.querySelector('#dataOutput')
 
+		var btnGroup = Array.from(document.querySelectorAll('.btn'))
+		btnGroup.forEach(it =>{
+			it.addEventListener('click',function (event) {
+			inputArea.value += it.innerHTML
+			})
+		})
+
 		submitBtn.addEventListener('click', function(){
 			var inputStr = inputArea.value.replace(/(\W)/g, ' $& ')
 			console.log(evalRpn(dal2Rpn(inputStr)))
-			outputArea.innerHTML =inputStr + '=' + evalRpn(dal2Rpn(inputStr))	
-
+			outputArea.innerHTML =inputStr + ' = ' + evalRpn(dal2Rpn(inputStr))	
+		})
 	</script>
 </body>
 </html>

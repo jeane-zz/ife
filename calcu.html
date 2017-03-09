@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>计算器</title>
+</head>
+<body>
+	<script type="text/javascript">
+		var str = '1 + 2 * 3'
+		var arr = str.split(" ")
+		var resArr = []
+		var tempRes,res 
+		resArr.push(arr[0])
+		for(var i = 1; i < arr.length; i++){
+			if(!/\d/.test(arr[i]))
+			res = decide(i)
+		}
+
+		function add(i) {
+			parse(i, i + 2)
+			if(tempRes){
+				var result = tempRes
+				tempRes = undefined
+				return arr[i - 1] + result
+			}else{
+				tempRes = arr[i - 1] + arr[i + 1]
+				return tempRes
+			}
+		}
+		function mul(i){
+			parse(i, i + 2)
+			if(tempRes){
+				var result = tempRes
+				tempRes = undefined
+				return arr[i - 1] * result
+			}else {
+				tempRes = arr[i - 1] * arr[i + 1]
+				return tempRes
+			}
+			
+		}
+		function parse(i, j){
+			if(property(arr[i]) < property(arr[j])){
+				decide(j)
+			}
+		}
+		function decide(i) {
+			switch(arr[i]){
+				case '+':return add(i)
+				case "-":return min(i)
+				case '*':return mul(i)
+				case "/":return div(i)
+			}
+		}
+
+		// 优先级
+		function property(a){
+			switch(a){
+				case '+':
+				case "-":return 1;
+				case '*':
+				case "/":return 2;
+			}
+		}
+
+
+
+	</script>
+</body>
+</html>
