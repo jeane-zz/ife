@@ -4,65 +4,63 @@
 	<title>计算器</title>
 </head>
 <body>
+	<input type="text" name="" id="dataInput">
+	<button id="submit">确认</button>
+
 	<script type="text/javascript">
-		var str = '1 + 2 * 3'
-		var arr = str.split(" ")
-		var resArr = []
-		var tempRes,res 
-		resArr.push(arr[0])
-		for(var i = 1; i < arr.length; i++){
-			if(!/\d/.test(arr[i]))
-			res = decide(i)
-		}
 
-		function add(i) {
-			parse(i, i + 2)
-			if(tempRes){
-				var result = tempRes
-				tempRes = undefined
-				return arr[i - 1] + result
-			}else{
-				tempRes = arr[i - 1] + arr[i + 1]
-				return tempRes
-			}
-		}
-		function mul(i){
-			parse(i, i + 2)
-			if(tempRes){
-				var result = tempRes
-				tempRes = undefined
-				return arr[i - 1] * result
-			}else {
-				tempRes = arr[i - 1] * arr[i + 1]
-				return tempRes
-			}
+
+		var submitBtn = document.querySelector('#submit')
+		var inputArea = document.querySelector('#dataInput')
+		
+		submitBtn.addEventListener('click', function(err){
+			var inputStr = inputArea.value.replace(/\./g,'_').replace('（','(').replace('）',')').replace(/(\W)/g, ' $& ').replace(/_/g,'.')
+			var arr = inputStr.split(' ').filter(it => it != '')
+			// console.log(arr)
 			
-		}
-		function parse(i, j){
-			if(property(arr[i]) < property(arr[j])){
-				decide(j)
+			exp(0)
+			function exp(i){
+				if(i >= arr.length - 1){
+					console.log(arr[i])
+					return arr[i]
+				}
+				if(parse(i + 1, i + 3)){
+					arr[i+2] = cal(i,i+1,i+2)
+					return exp(i+2)
+				}else {
+					arr[i+2] = cal(i+2,i+3,i+4)
+					arr.splice(i+3,2)
+					return exp(i)
+				}
 			}
-		}
-		function decide(i) {
-			switch(arr[i]){
-				case '+':return add(i)
-				case "-":return min(i)
-				case '*':return mul(i)
-				case "/":return div(i)
+			function cal(a,symbol,b){
+				switch(arr[symbol]){
+					case '+':return Number(arr[a]) + Number(arr[b])
+					case "-":return arr[a] - arr[b]
+					case '*':return arr[a] * arr[b]
+					case "/":if(arr[b] !== 0){return arr[a] / arr[b]}else{throw new Error('除数不能为0')}
+					case "%": return arr[a] % arr[b]
+					case "^": return Math.pow(arr[a],arr[b])
+				}
 			}
-		}
-
-		// 优先级
-		function property(a){
-			switch(a){
-				case '+':
-				case "-":return 1;
-				case '*':
-				case "/":return 2;
+			function parse(i, j){
+				if(property(arr[i]) < property(arr[j])){
+					return false
+				}
+				return true
+			}// 优先级
+			function property(a){
+				switch(a){
+					case '+': 
+					case "-": return 1
+					case '*': 
+					case "/":
+					case '%': 
+					case "^": return 2
+					default: return 0
+				}
 			}
-		}
-
-
+		})
 
 	</script>
 </body>
