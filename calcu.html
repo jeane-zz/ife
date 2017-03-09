@@ -4,10 +4,8 @@
 	<title>计算器</title>
 	<style type="text/css">	
 	section {
-		width: 300px;
 		height: 350px;
 		box-shadow: 0px 0px 5px 10px #f2f2f2;
-		padding: 20px;		
 	}
 	button {
 		width: 46px;
@@ -35,11 +33,22 @@
 		margin: 8px 0 4px 0;
 		width: 100%;
 	}
+
+	#calc, #tip, #head {
+		width: 320px;
+		padding: 20px;
+		margin: 0 auto;
+	}
+	#head {
+		text-align: center;
+	}
 	</style>
 </head>
 <body>
-<!-- <p>支持的函数运算 sin, cos,tan, cot, abs, log,ln,sqrt,支持双目整数运算，支持用括号改变优先级，点击确认键进行运算</p> -->
-<section>
+<div id="head">
+	<h2>算式计算器</h2>
+</div>
+<section id="calc">
 	<header>
 		<input type="text" name="" id="dataInput">
 		<button id="submit">确认</button>
@@ -76,8 +85,20 @@
 		<button title="撤销上一步输入" id="del">←</button>
 		<button title="清空输入框" id="clear">清零</button>
 	</div>
-	
-</section>	
+
+</section>
+<div id="tip">
+	<h3>使用说明：请输入标准运算式</h3>
+	<ul>
+		<li>键盘或按钮点击输入，确认键进行运算</li>
+		<li>支持加、减、乘、除、取模、乘方运算</li>
+		<li>支持常用三角函数计算</li>
+		<li>支持对数运算、绝对值、平方根运算</li>
+		<li>支持小数、括号、嵌套运算</li>
+		<li>三角函数仅支持角度值计算</li>
+
+	</ul>
+</div>		
 	<script type="text/javascript">
 		var submitBtn = document.querySelector('#submit')
 		var inputArea = document.querySelector('#dataInput')
