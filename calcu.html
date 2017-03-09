@@ -2,61 +2,207 @@
 <html>
 <head>
 	<title>计算器</title>
+	<style type="text/css">	
+	section {
+		width: 300px;
+		height: 350px;
+		box-shadow: 0px 0px 5px 10px #f2f2f2;
+		padding: 20px;		
+	}
+	button {
+		width: 46px;
+		height: 30px;
+		margin: 5px;
+		font-size: 15px;
+		font-weight: bold;
+	}
+	
+	header {
+		height: 100px;
+		width: 100%;
+		aborder: 1px solid #f2f2f2;
+		padding: 10px;
+		box-sizing: border-box;
+		margin-top: -10px;
+	}
+	#dataInput,#dataOutput {
+		display: inline-block;
+		width: 70%;
+		height: 24px;
+	}
+	#dataOutput {
+		text-align: center;
+		margin: 8px 0 4px 0;
+		width: 100%;
+	}
+	</style>
 </head>
 <body>
-<p>支持 sin\cos 括号内为一个规范a+b形式的计算式</p>
-	<input type="text" name="" id="dataInput">
-	<button id="submit">确认</button>
-
+<!-- <p>支持的函数运算 sin, cos,tan, cot, abs, log,ln,sqrt,支持双目整数运算，支持用括号改变优先级，点击确认键进行运算</p> -->
+<section>
+	<header>
+		<input type="text" name="" id="dataInput">
+		<button id="submit">确认</button>
+		<div id="dataOutput"></div>
+	</header>
+	<div>
+		<button title="数字0" class="btn">0</button>
+		<button title="数字1" class="btn">1</button>
+		<button title="数字2" class="btn">2</button>
+		<button title="数字3" class="btn">3</button>
+		<button title="数字4" class="btn">4</button>
+		<button title="数字5" class="btn">5</button>
+		<button title="数字6" class="btn">6</button>
+		<button title="数字7" class="btn">7</button>
+		<button title="数字8" class="btn">8</button>
+		<button title="数字9" class="btn">9</button>
+		<button title="小数点" class="btn">.</button>
+		<button title="加法运算" class="btn">+</button>
+		<button title="减法运算" class="btn">-</button>
+		<button title="乘法运算" class="btn">*</button>
+		<button title="除法运算" class="btn">/</button>
+		<button title="取模运算" class="btn">%</button>
+		<button title="乘方运算" class="btn">^</button>
+		<button title="" class="btn">(</button>
+		<button title="" class="btn">)</button>
+		<button title="返回该度数的sin值" class="btn">sin</button>
+		<button title="返回该度数的cos值" class="btn">cos</button>
+		<button title="返回该度数的tan值" class="btn">tan</button>
+		<button title="返回该度数的cot值" class="btn">cot</button>
+		<button title="返回该数的自然对数" class="btn">ln</button>
+		<button title="返回该数的以10为底的对数" class="btn">log</button>
+		<button title="返回该数的绝对值" class="btn">abs</button>
+		<button title="返回该数的平方根" class="btn">sqrt</button>
+		<button title="撤销上一步输入" id="del">←</button>
+		<button title="清空输入框" id="clear">清零</button>
+	</div>
+	
+</section>	
 	<script type="text/javascript">
-
-
 		var submitBtn = document.querySelector('#submit')
 		var inputArea = document.querySelector('#dataInput')
-		
-		submitBtn.addEventListener('click', function(err){
-			var inputStr = inputArea.value.replace(/\./g,'_').replace('（','(').replace('）',')').replace(/(\W)/g, ' $& ').replace(/_/g,'.')
+		var outputArea = document.querySelector('#dataOutput')
+
+		var btnGroup = Array.from(document.querySelectorAll('.btn'))
+		var deleteBtn = document.querySelector('#del')
+		var clearBtn = document.querySelector('#clear')
+		btnGroup.forEach(it =>{
+			it.addEventListener('click',function (event) {
+				// 连续多次点击不同的运算按钮，取最后一个
+				if(judge(it.innerHTML) == 2){
+					// 如果同是运算符，则撤销前一次输入
+					if(judge(inputArea.value[inputArea.value.length - 1]) == 2) {
+						inputArea.value = inputArea.value.slice(0, inputArea.value.length - 1)
+						inputArea.value += it.innerHTML
+						submitBtn.disabled = false
+					}else if(judge(inputArea.value[inputArea.value.length - 1]) == 1) {
+						alert('你的输入有问题')
+						submitBtn.disabled = true
+					}else{
+						inputArea.value += it.innerHTML
+						submitBtn.disabled = false
+					}
+
+				}
+				else if(judge(it.innerHTML) == 1){
+					// 如果同是运算符，则撤销前一次输入
+					if(judge(inputArea.value[inputArea.value.length - 1]) == 1 || judge(inputArea.value[inputArea.value.length - 1]) == 3) {
+						alert('你的输入有问题')
+						submitBtn.disabled = true
+					}else{
+						inputArea.value += it.innerHTML
+						submitBtn.disabled = false
+					}
+				// 连续输入小数点	
+				}else if(judge(it.innerHTML) == 3){
+					// 如果同是运算符，则撤销前一次输入
+					if(judge(inputArea.value[inputArea.value.length - 1]) == 3) {
+						submitBtn.disabled = false
+					}
+					else if(judge(inputArea.value[inputArea.value.length - 1]) == 2) {
+						inputArea.value += it.innerHTML
+						submitBtn.disabled = false
+					}if(judge(inputArea.value[inputArea.value.length - 1]) != 0) {
+						alert('你的输入有问题')
+						submitBtn.disabled = true
+					}
+				}else{
+					inputArea.value += it.innerHTML
+					submitBtn.disabled = false
+				}
+			})
+		})
+
+
+
+
+		deleteBtn.addEventListener('click',function () {
+			inputArea.value = inputArea.value.slice(0, inputArea.value.length - 1)
+		})
+		clearBtn.addEventListener('click',function () {
+			inputArea.value = ''
+		})
+
+		submitBtn.addEventListener('click', function(){
+			var res = parseExp(inputArea.value)
+			outputArea.innerHTML = res
+		})
+
+		function parseExp(str) {
+			var inputStr = str.replace(/\./g,'_').replace('（','(').replace('）',')').replace(/(\W)/g, ' $& ').replace(/_/g,'.')
 			var arr = inputStr.split(' ').filter(it => it != '')
 
-			// 处理括号问题。如果是算式直接运算，如果是数学函数，直接替换成数字
+			// 如果以负数开头 ，以0开头
+  			if(arr[0] == '-'){
+  				arr.unshift(0)
+  			}
+
+			// 处理括号问题。
   			while(arr.indexOf('(') > -1){
   				var flag1 = arr.lastIndexOf('(')
   				var flag2 = arr.indexOf(')', flag1)
-  				if(flag2 - flag1 == 4){
-  					arr[flag1] = cal(flag1 + 1, flag1 + 2, flag1 + 3)
-  					arr.splice(flag1 + 1, 4)
-  				}
-  				else if(flag2 - flag1 == 2){
-  					arr[flag1] = arr[flag1 + 1]
-  					arr.splice(flag1 + 1, 2)
-  				}
+  				tempStr = arr.slice(flag1 + 1, flag2).join('')
+  					arr[flag1] = parseExp(tempStr)
+  					arr.splice(flag1 + 1, flag2 - flag1)
   			}
-			
-  			var funArr = ['sin', 'cos']
+			// 处理函数问题
+  			var funArr = ['sin', 'cos','tan', 'cot','abs','sqrt','log','ln']
   			funArr.forEach(it => {
   				while(arr.indexOf(it) > -1){
   					var flag3 = arr.indexOf(it)
   					arr[flag3] = calFun(flag3, it)
   					arr.splice(flag3 + 1, 1)
   				}
-  			})
-
-			exp(0)
-			function exp(i){
-				if(i >= arr.length - 1){
-					console.log(arr[i])
-					return arr[i]
-				}
-				if(parse(i + 1, i + 3)){
-					arr[i+2] = cal(i,i+1,i+2)
-					return exp(i+2)
-				}else {
-					arr[i+2] = cal(i+2,i+3,i+4)
-					arr.splice(i+3,2)
-					return exp(i)
-				}
+  			})		
+  			
+			// 结束条件
+			if(arr.length == 1) {
+				return arr[0]
 			}
-			function cal(a,symbol,b){
+
+  			// 如果是最简单的 a + b
+  			if(arr.length == 3){
+  				arr[0] = cal(0, 1, 2)
+  				arr.splice(1,2)
+  				return arr[0]
+  			}
+  			// 如果是连续的 a + b *c 
+  			if(arr.length >= 5 && arr.length % 2 == 1){
+  				while(arr.length > 1){
+  					var flag = parse(1, 3)
+  					if(flag){
+  						arr[0] = cal(0, 1, 2)
+  						arr.splice(1,2)
+  					}else {
+  						arr[2] = cal(2, 3, 4)
+  						arr.splice(3,2)
+  					}
+
+  				}
+  				return arr[0]		
+  			}
+  			// 基本的双目运算
+  			function cal(a,symbol,b){
 				switch(arr[symbol]){
 					case '+':return Number(arr[a]) + Number(arr[b])
 					case "-":return arr[a] - arr[b]
@@ -66,12 +212,30 @@
 					case "^": return Math.pow(arr[a],arr[b])
 				}
 			}
+
+			// Math系列函数
+			function calFun(index, value) {
+				switch(value){
+					case 'sin':return Math.sin(Number(arr[index + 1]* Math.PI/180))
+					case 'cos':return Math.cos(Number(arr[index + 1]* Math.PI/180))
+					case 'tan':return Math.tan(Number(arr[index + 1]* Math.PI/180))
+					case 'cot':return Math.cos(Number(arr[index + 1]* Math.PI/180))/Math.sin(Number(arr[index + 1]* Math.PI/180))
+					case 'sqrt':return Math.sqrt(Number(arr[index + 1]))
+					case 'abs':return Math.abs(Number(arr[index + 1]))	
+					case 'log':return Math.log10(Number(arr[index + 1]))
+					case 'ln':return Math.log(Number(arr[index + 1]))
+					
+				}
+			}
+			// 优先级比较
 			function parse(i, j){
 				if(property(arr[i]) < property(arr[j])){
 					return false
 				}
 				return true
-			}// 优先级
+			}
+
+			// 优先级设置
 			function property(a){
 				switch(a){
 					case '+': 
@@ -84,12 +248,42 @@
 				}
 			}
 
-			function calFun(index, value) {
-				switch(value){
-					case 'sin':return Math.sin(Number(arr[index + 1]))
-				}
+		}
+
+		// 判断相连的输入是否冲突
+		function judge(value) {
+			switch(value) {
+				case '.': return 3
+				case '+': 
+				case "-": 
+				case '*': 
+				case "/":
+				case '%': 
+				case "^": return 2
+				case 'sin': 
+				case 'cos': 
+				case 'tan': 
+				case 'cot':
+				case 'sqrt': 
+				case 'abs':
+				case 'log': 
+				case 'ln': 
+				case 's': 
+				case 'i': 
+				case 'n':
+				case 'c':
+				case 'o': 
+				case 't': 
+				case 'a':
+				case 'q':
+				case 'r': 
+				case 'b': 
+				case 'l':
+				case 'g': return 1
+				default: return 0
 			}
-		})
+		}
+
 
 	</script>
 </body>
