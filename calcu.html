@@ -4,6 +4,7 @@
 	<title>计算器</title>
 </head>
 <body>
+<p>支持 sin\cos 括号内为一个规范a+b形式的计算式</p>
 	<input type="text" name="" id="dataInput">
 	<button id="submit">确认</button>
 
@@ -16,8 +17,30 @@
 		submitBtn.addEventListener('click', function(err){
 			var inputStr = inputArea.value.replace(/\./g,'_').replace('（','(').replace('）',')').replace(/(\W)/g, ' $& ').replace(/_/g,'.')
 			var arr = inputStr.split(' ').filter(it => it != '')
-			// console.log(arr)
+
+			// 处理括号问题。如果是算式直接运算，如果是数学函数，直接替换成数字
+  			while(arr.indexOf('(') > -1){
+  				var flag1 = arr.lastIndexOf('(')
+  				var flag2 = arr.indexOf(')', flag1)
+  				if(flag2 - flag1 == 4){
+  					arr[flag1] = cal(flag1 + 1, flag1 + 2, flag1 + 3)
+  					arr.splice(flag1 + 1, 4)
+  				}
+  				else if(flag2 - flag1 == 2){
+  					arr[flag1] = arr[flag1 + 1]
+  					arr.splice(flag1 + 1, 2)
+  				}
+  			}
 			
+  			var funArr = ['sin', 'cos']
+  			funArr.forEach(it => {
+  				while(arr.indexOf(it) > -1){
+  					var flag3 = arr.indexOf(it)
+  					arr[flag3] = calFun(flag3, it)
+  					arr.splice(flag3 + 1, 1)
+  				}
+  			})
+
 			exp(0)
 			function exp(i){
 				if(i >= arr.length - 1){
@@ -58,6 +81,12 @@
 					case '%': 
 					case "^": return 2
 					default: return 0
+				}
+			}
+
+			function calFun(index, value) {
+				switch(value){
+					case 'sin':return Math.sin(Number(arr[index + 1]))
 				}
 			}
 		})
