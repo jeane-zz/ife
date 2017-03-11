@@ -157,7 +157,7 @@
 				// 操作数 直接进 输出队列
 				if(value.charCodeAt(0) >= 48 && value.charCodeAt(0) <= 75 || value.charCodeAt(0) == 46){
 					if(Number.isNaN(Number(value)) == false) {
-						if(outputStr == '' || inputStr[i - 1] == '(' || (isOperator(inputStr[i - 1] && inputStr[i - 1] != '!'))){
+						if(outputStr == '' || inputStr[i - 1] == '(' || (isOperator(inputStr[i - 1]) && inputStr[i - 1] != '!')){
 							outputStr.push(value)
 						}
 						else {
