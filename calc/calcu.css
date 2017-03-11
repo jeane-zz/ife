@@ -1,0 +1,144 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+body, section,aside, div, a, p, ul, li, input, h2, h3, h4 {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+li {
+  list-style: none;
+}
+
+section {
+  max-width: 800px;
+  min-width:400px;
+  border: 1px solid #d3d3d3;
+  margin: 50px auto 0;
+  padding-top: 20px;
+  text-align: center;
+  position: relative;
+  
+}
+section > h4 {
+  font-size: 12px;
+  text-align: left;
+  display: inline-block;
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  font-weight: normal;
+}
+
+.main {
+  background: #f2f2f2;
+  position: relative;
+  overflow: hidden;
+  width: 75%;
+}
+
+header {
+  height: 100px;
+  position: relative;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+#dataInput {
+  outline: none;
+  border: none;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding-right: 30px;
+  font-size: 30px;
+  text-align: right;
+}
+#dataOutput {
+  height: 50px;
+  line-height: 50px;
+  font-size: 16px;
+  background: #fff;
+  amargin-bottom: 50px;
+}
+
+.main li{
+  height: 48px;
+  line-height: 48px;
+  width: 20%;
+  float: left;
+}
+.main li:hover {
+  background: #dadada;
+}
+li[data-num] {
+   font-weight: bold;
+}
+
+
+aside {
+  width: 25%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0px;
+  border-left: 1px solid #e2e2e2;
+  text-align: left;
+  padding: 0 10px;
+}
+aside h4 {
+  font-size: 14px;
+  line-height: 30px;
+  height: 30px;
+  margin: 20px 0;
+}
+aside li{
+  font-size: 13px;
+  margin-left: 10px;
+  list-style-type: decimal;
+  line-height: 20px;
+}
+
+@media (max-width : 600px) {
+  .main li {
+    width: 25%;
+  }
+  li[data-fun]{
+    display: none;
+  }
+  li[data-process]{
+    display: none;
+  }
+  li[data-process]:nth-of-type(-n + 20) {
+    display: inline-block;
+  }
+  aside li {
+    line-height: 17px;
+  }
+  section > h4 span {
+    display: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

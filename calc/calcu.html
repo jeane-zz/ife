@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>计算器</title>
+	<link rel="stylesheet" type="text/css" href="calcu.css">
+</head>
+<body>
+	<section id="">
+		<h4>算式计算器<span> (扩展型) </span></h4>
+          <div class="main">	
+            <header>
+              <input type="text" name="" id="dataInput" placeholder="请在此处输入计算式">
+            </header>
+		    <div id="dataOutput"></div>
+			<ul id="btns">
+				<li data-fun title="返回该度数的sin值" class="btn">sin</li>
+				<li data-num title="数字1" class="btn">1</li>
+				<li data-num title="数字2" class="btn">2</li>
+				<li data-num title="数字3" class="btn">3</li>
+                <li data-process title="加法运算" class="btn">+</li>
+                <li data-fun title="返回该度数的cos值" class="btn">cos</li>
+				<li data-num title="数字4" class="btn">4</li>
+				<li data-num title="数字5" class="btn">5</li>
+				<li data-num title="数字6" class="btn">6</li>
+                <li data-process title="减法运算" class="btn">-</li>
+                <li data-fun title="返回该度数的tan值" class="btn">tan</li>
+				<li data-num title="数字7" class="btn">7</li>
+				<li data-num title="数字8" class="btn">8</li>
+				<li data-num title="数字9" class="btn">9</li>
+                <li data-process title="乘法运算" class="btn">*</li>
+                <li data-fun title="返回该数的以10为底的对数" class="btn">log</li>
+				<li data-num title="小数点" class="btn">.</li>
+                <li data-num title="数字0" class="btn">0</li>
+				<li data-require title="撤销上一步输入" id="del">←</li>				
+				<li data-process title="除法运算" class="btn">/</li>
+				<li data-fun title="返回该数的绝对值" class="btn">abs</li>
+                <li data-fun title="返回该数的平方" class="btn">square</li>
+                <li data-process title="取模运算" class="btn">%</li>
+				<li data-process title="乘方运算" class="btn">^</li>
+				<li data-process title="阶乘运算" class="btn">!</li>
+				<li data-fun title="返回该数的平方根" class="btn">sqrt</li>
+				<li data-require title="" class="btn">(</li>
+				<li data-require title="" class="btn">)</li>
+				<li data-require title="清空输入框" id="clear">清零</li>
+                <li data-require id="submit">确认</li>
+			</ul>
+		</div>
+		<aside>            
+			<h4>使用说明：</h4>
+			<ul>
+                <li>请输入标准运算式</li>
+				<li>键盘或按钮点击输入，确认键进行运算</li>
+				<li>支持加、减、乘、除、取模、乘方运算</li>
+				<li>支持常用三角函数计算</li>
+				<li>支持对数运算、绝对值、平方根运算</li>
+				<li>支持小数、括号、嵌套运算</li>
+			</ul>
+		</aside>
+	</section>		
+<script src="calcu.js"></script>
+</body>
+</html>
