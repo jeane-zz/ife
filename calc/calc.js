@@ -152,20 +152,32 @@
 				inputStr.unshift(0)
 			} 
 
-			for(value of inputStr){
+			for(let i = 0; i < inputStr.length; i++){
+				let value = inputStr[i]
 				// 操作数 直接进 输出队列
 				if(value.charCodeAt(0) >= 48 && value.charCodeAt(0) <= 75 || value.charCodeAt(0) == 46){
 					if(Number.isNaN(Number(value)) == false) {
-						outputStr.push(value)
+						if(outputStr == '' || inputStr[i - 1] == '(' || (isOperator(inputStr[i - 1] && inputStr[i - 1] != '!'))){
+							outputStr.push(value)
+						}
+						else {
+							warn(value + ' is not supposed to be here')
+							return false
+						}	
 					} else{
-						warn(value)
-						// index = inputStr.length
+						// 数字本身不合法
+						warn(value + ' is invalid')
 						return false
 					}
 				}
 				// 左括号直接进栈
 				else if(value == '(') {
-					stack.push(value)
+					if((stack.length == 0 && outputStr.length == 0) || (isOperator(inputStr[i - 1]) && inputStr[i - 1] != '!') || isFun(inputStr[i - 1]) || inputStr[i - 1] == '('){
+						stack.push(value)
+					}else {
+						warn(value + ' is not supposed to be here')
+						return false
+					}
 				}
 				// 右括号将左括号前面的操作符都 添加到输出队列
 				else if(value == ')') {
@@ -181,7 +193,7 @@
 					stack.push(value)
 				}
 				// 操作符判断后进栈
-				else{
+				else if(isOperator(value)){
 					while(stack.length > 0 
 						&& 
 						stack[stack.length - 1] != '(' 
@@ -190,18 +202,28 @@
 						outputStr.push(stack.pop())
 					}
 					stack.push(value)
+				}else {
+					warn(value)
+					return false
 				}
 			}
 			
 			while(stack.length > 0) {
 				outputStr.push(stack.pop())
 			}
-
+			if(outputStr.indexOf('(') > -1 || outputStr.length == 0){
+				warn('your input is not completed !')
+				return false
+			}
 			return outputStr
 		}
 
 		function warn (str) {
-			errArea.innerHTML = str + ' is invaild !'
+			errArea.innerHTML = str
+			outputArea.innerHTML = ''
+			if(errArea.parentNode == null) {
+				outputArea.appendChild(errArea)
+			}
 		}
 
 		// 判断是否操作数
