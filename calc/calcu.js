@@ -4,7 +4,7 @@
 		var btnGroup = document.querySelector('#btns')
 		var deleteBtn = document.querySelector('#del')
 		var clearBtn = document.querySelector('#clear')
-
+		var errArea	= document.querySelector('#errMess')
 		// 操作符 数组
 		var opArr = ['+','-','*','/','^','%','!']
 		// 函数数组
@@ -46,9 +46,12 @@
 					else if(judge(inputArea.value[inputArea.value.length - 1]) == 2) {
 						inputArea.value += event.target.innerHTML
 						submitBtn.disabled = false
-					}if(judge(inputArea.value[inputArea.value.length - 1]) != 0) {
+					}else if(judge(inputArea.value[inputArea.value.length - 1]) != 0) {
 						alert('你的输入有问题')
 						submitBtn.disabled = true
+					}else{
+						inputArea.value += event.target.innerHTML
+						submitBtn.disabled = false
 					}
 				}else{
 					inputArea.value += event.target.innerHTML
@@ -69,12 +72,17 @@
 		// 计算
 		submitBtn.addEventListener('click', function(){
 			var res = calcu(inputArea.value)
-			outputArea.innerHTML = res
+			if(res){
+				outputArea.innerHTML = res
+			}
 		})
 
 		// 利用后缀表达式进行运算
 		function calcu(str) {
 			var arr = toRPN(str)
+			if(arr.length == 0 || !arr) {
+				return false
+			}
 			var stack = []
 			arr.forEach(value => {
 				if(Number.isNaN(Number(value)) == false){
@@ -132,21 +140,28 @@
 						  .replace(/）/g,')')
 						  .replace(/(\W)/g, ' $& ')
 						  .replace(/_/g,'.')
+						  .toLowerCase()
 						  .split(' ')
 						  .filter(it => it != '')
 
 			var outputStr = []
 			var stack = []
 
-			// 负数在第一位置的情况
-			if(inputStr[0] == '-'){
+			// 正负号出现在第一位置的情况
+			if(inputStr[0] == '-' || inputStr[0] == '+'){
 				inputStr.unshift(0)
 			} 
 
-			inputStr.forEach(function(value) {
+			for(value of inputStr){
 				// 操作数 直接进 输出队列
-				if(Number.isNaN(Number(value)) == false) {
-					outputStr.push(value)
+				if(value.charCodeAt(0) >= 48 && value.charCodeAt(0) <= 75 || value.charCodeAt(0) == 46){
+					if(Number.isNaN(Number(value)) == false) {
+						outputStr.push(value)
+					} else{
+						warn(value)
+						// index = inputStr.length
+						return false
+					}
 				}
 				// 左括号直接进栈
 				else if(value == '(') {
@@ -176,7 +191,8 @@
 					}
 					stack.push(value)
 				}
-			})
+			}
+			
 			while(stack.length > 0) {
 				outputStr.push(stack.pop())
 			}
@@ -184,6 +200,9 @@
 			return outputStr
 		}
 
+		function warn (str) {
+			errArea.innerHTML = str + ' is invaild !'
+		}
 
 		// 判断是否操作数
 		function isOperator(v) {
