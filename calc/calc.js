@@ -34,7 +34,7 @@
 						alert('你的输入有问题')
 						submitBtn.disabled = true
 					}else{
-						inputArea.value += event.target.innerHTML
+						inputArea.value += event.target.innerHTML + '('
 						submitBtn.disabled = false
 					}
 				// 连续输入小数点	
@@ -54,7 +54,11 @@
 						submitBtn.disabled = false
 					}
 				}else{
-					inputArea.value += event.target.innerHTML
+					if(isFun(event.target.innerHTML)){
+						inputArea.value += event.target.innerHTML + "("
+					}else {
+						inputArea.value += event.target.innerHTML
+					}
 					submitBtn.disabled = false
 				}
 				
@@ -309,6 +313,7 @@
 				case 'abs':
 				case 'log': 
 				case 'ln': 
+				case 'square':
 				case 's': 
 				case 'i': 
 				case 'n':
