@@ -72,10 +72,12 @@
 		// 计算
 		submitBtn.addEventListener('click', function(){
 			var res = calcu(inputArea.value)
-			if(res){
+			if(res || res === 0){
 				outputArea.innerHTML = res
 			}
 		})
+		
+		
 
 		// 利用后缀表达式进行运算
 		function calcu(str) {
@@ -155,7 +157,7 @@
 			for(let i = 0; i < inputStr.length; i++){
 				let value = inputStr[i]
 				// 操作数 直接进 输出队列
-				if(value.charCodeAt(0) >= 48 && value.charCodeAt(0) <= 75 || value.charCodeAt(0) == 46){
+				if(value == 0 || (value.charCodeAt(0) >= 48 && value.charCodeAt(0) <= 57) || value.charCodeAt(0) == 46){
 					if(Number.isNaN(Number(value)) == false) {
 						// 数字前面只能是 左括号、阶乘以外的操作符、空
 						if(outputStr == '' || inputStr[i - 1] == '(' || (isOperator(inputStr[i - 1]) && inputStr[i - 1] != '!')){
@@ -198,8 +200,12 @@
 				}
 				// 函数名 直接进栈
 				else if(isFun(value)){
+					if(i == inputStr.length) {
+						warn('your input is not completed !')
+						return false
+					}
 					// 函数名前面只能是 左括号、阶乘以外的操作符、空
-					if(inputStr[i - 1] == '(' ||  (isOperator(inputStr[i - 1]) && inputStr[i - 1] != '!') || outputStr.length == 0 ){
+					else if(inputStr[i - 1] == '(' ||  (isOperator(inputStr[i - 1]) && inputStr[i - 1] != '!') || outputStr.length == 0 ){
 						stack.push(value)
 					}else {
 						warn(value + ' is not supposed to be here')
@@ -208,8 +214,12 @@
 				}
 				// 操作符判断后进栈
 				else if(isOperator(value)){
+					if(i == inputStr.length && value !== '!') {
+						warn('your input is not completed !')
+						return false
+					}
 					// 操作符前面只能是 数字、右括号、阶乘
-					if(inputStr[i - 1] == '!' || inputStr[i - 1] == ')' || Number(inputStr[i - 1])){
+					else if(inputStr[i - 1] == 0||inputStr[i - 1] == '!' || inputStr[i - 1] == ')' || Number(inputStr[i - 1])){
 						while(stack.length > 0 
 							&& 
 							stack[stack.length - 1] != '(' 
@@ -231,7 +241,9 @@
 			while(stack.length > 0) {
 				outputStr.push(stack.pop())
 			}
-			if(outputStr.indexOf('(') > -1 || outputStr.length == 0){
+
+			// outputStr中 不应该出现 左右括号
+			if(outputStr.indexOf('(') > -1 || outputStr.indexOf(')') > -1  || outputStr.length == 0){
 				warn('your input is not completed !')
 				return false
 			}
