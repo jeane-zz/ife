@@ -157,6 +157,7 @@
 				// 操作数 直接进 输出队列
 				if(value.charCodeAt(0) >= 48 && value.charCodeAt(0) <= 75 || value.charCodeAt(0) == 46){
 					if(Number.isNaN(Number(value)) == false) {
+						// 数字前面只能是 左括号、阶乘以外的操作符、空
 						if(outputStr == '' || inputStr[i - 1] == '(' || (isOperator(inputStr[i - 1]) && inputStr[i - 1] != '!')){
 							outputStr.push(value)
 						}
@@ -172,6 +173,7 @@
 				}
 				// 左括号直接进栈
 				else if(value == '(') {
+					// 左括号前面只能是 左括号、阶乘以外的操作符、空、函数
 					if((stack.length == 0 && outputStr.length == 0) || (isOperator(inputStr[i - 1]) && inputStr[i - 1] != '!') || isFun(inputStr[i - 1]) || inputStr[i - 1] == '('){
 						stack.push(value)
 					}else {
@@ -181,29 +183,47 @@
 				}
 				// 右括号将左括号前面的操作符都 添加到输出队列
 				else if(value == ')') {
-					while(stack[stack.length - 1] != '('){
-						outputStr.push(stack.pop())
-					}
-					if(stack[stack.length - 1] == '('){
-						stack.pop()
+					// 右括号前面只能是 右括号、数字
+					if(Number(inputStr[i - 1]) || inputStr[i - 1] == '('){
+						while(stack[stack.length - 1] != '('){
+							outputStr.push(stack.pop())
+						}
+						if(stack[stack.length - 1] == '('){
+							stack.pop()
+						}
+					} else{
+						warn('Unexpected token ' + value)
+						return false
 					}
 				}
 				// 函数名 直接进栈
 				else if(isFun(value)){
-					stack.push(value)
+					// 函数名前面只能是 左括号、阶乘以外的操作符、空
+					if(inputStr[i - 1] == '(' ||  (isOperator(inputStr[i - 1]) && inputStr[i - 1] != '!') || outputStr.length == 0 ){
+						stack.push(value)
+					}else {
+						warn(value + ' is not supposed to be here')
+						return false
+					}
 				}
 				// 操作符判断后进栈
 				else if(isOperator(value)){
-					while(stack.length > 0 
-						&& 
-						stack[stack.length - 1] != '(' 
-						&& 
-						property(value) <= property(stack[stack.length - 1])){
-						outputStr.push(stack.pop())
+					// 操作符前面只能是 数字、右括号、阶乘
+					if(inputStr[i - 1] == '!' || inputStr[i - 1] == ')' || Number(inputStr[i - 1])){
+						while(stack.length > 0 
+							&& 
+							stack[stack.length - 1] != '(' 
+							&& 
+							property(value) <= property(stack[stack.length - 1])){
+							outputStr.push(stack.pop())
+						}
+						stack.push(value)
+					}else{
+						warn(value + ' is not supposed to be here ')
+						return false
 					}
-					stack.push(value)
 				}else {
-					warn(value)
+					warn(value + ' is invalid ')
 					return false
 				}
 			}
