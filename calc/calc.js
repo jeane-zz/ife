@@ -76,7 +76,8 @@
 		// 清零
 		clearBtn.addEventListener('click',function () {
 			inputArea.value = ''
-			errArea.innerHTML = ''
+			outputArea.innerHTML = ''
+			// errArea.innerHTML = ''
 		})
 		// 计算
 		submitBtn.addEventListener('click', function(){
@@ -171,11 +172,9 @@
 				let value = inputStr[i]
 				
 				// 是否常量
-				for(var key in defaultConstant){
-					if(value == key){
-						value = defaultConstant[key]
-						break
-					}
+				if(value in defaultConstant){
+					value = defaultConstant[value]
+					inputStr[i] = value
 				}
 
 				// 操作数 直接进 输出队列
@@ -208,7 +207,7 @@
 				// 右括号将左括号前面的操作符都 添加到输出队列
 				else if(value == ')') {
 					// 右括号前面只能是 右括号、数字
-					if(Number(inputStr[i - 1]) || inputStr[i - 1] == '('){
+					if(typeof inputStr[i - 1] == 'number' || Number(inputStr[i - 1]) || inputStr[i - 1] == ')'){
 						while(stack[stack.length - 1] != '('){
 							outputStr.push(stack.pop())
 						}
@@ -222,7 +221,6 @@
 				}
 				// 函数名 直接进栈
 				else if(isFun(value)){
-					
 					if(i == inputStr.length - 1) {
 						warn('your input is not completed !')
 						return false
@@ -242,7 +240,7 @@
 						return false
 					}
 					// 操作符前面只能是 数字、右括号、阶乘
-					else if(inputStr[i - 1] == 0||inputStr[i - 1] == '!' || inputStr[i - 1] == ')' || Number(inputStr[i - 1])){
+					else if(typeof inputStr[i - 1] == 'number' || inputStr[i - 1] == '!' || inputStr[i - 1] == ')' || Number(inputStr[i - 1])){
 						while(stack.length > 0 
 							&& 
 							stack[stack.length - 1] != '(' 
