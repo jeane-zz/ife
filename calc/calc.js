@@ -72,6 +72,7 @@
 		// 清零
 		clearBtn.addEventListener('click',function () {
 			inputArea.value = ''
+			errArea.innerHTML = ''
 		})
 		// 计算
 		submitBtn.addEventListener('click', function(){
