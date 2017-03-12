@@ -10,6 +10,10 @@
 		// 函数数组
 		var funArr = ['sin','cos','tan','abs','log','sqrt','square', 'ln']
 		
+		// 默认常量
+		var defaultConstant = {'e': Math.E, 'pi':Math.PI}
+
+		// 界面按钮点击事件
 		btnGroup.addEventListener('click',function (event) {
 			if(event.target.className == 'btn'){
 				// 连续多次点击不同的运算按钮，取最后一个
@@ -165,8 +169,17 @@
 
 			for(let i = 0; i < inputStr.length; i++){
 				let value = inputStr[i]
+				
+				// 是否常量
+				for(var key in defaultConstant){
+					if(value == key){
+						value = defaultConstant[key]
+						break
+					}
+				}
+
 				// 操作数 直接进 输出队列
-				if(value == 0 || (value.charCodeAt(0) >= 48 && value.charCodeAt(0) <= 57) || value.charCodeAt(0) == 46){
+				if(typeof value == 'number' || (value.charCodeAt(0) >= 48 && value.charCodeAt(0) <= 57) || value.charCodeAt(0) == 46){
 					if(Number.isNaN(Number(value)) == false) {
 						// 数字前面只能是 左括号、阶乘以外的操作符、空
 						if(outputStr == '' || inputStr[i - 1] == '(' || (isOperator(inputStr[i - 1]) && inputStr[i - 1] != '!')){
@@ -209,6 +222,7 @@
 				}
 				// 函数名 直接进栈
 				else if(isFun(value)){
+					
 					if(i == inputStr.length - 1) {
 						warn('your input is not completed !')
 						return false
@@ -266,7 +280,10 @@
 				outputArea.appendChild(errArea)
 			}
 		}
-
+		// 判断是否常量
+		// function isConstant(v){
+		// 	return 
+		// }
 		// 判断是否操作数
 		function isOperator(v) {
 			return opArr.indexOf(v) > -1 ? true : false
