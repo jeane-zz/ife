@@ -76,8 +76,12 @@
 				outputArea.innerHTML = res
 			}
 		})
-
-
+		// enter 点击事件
+		document.addEventListener('keyup',(event) => {
+			if(event.keyCode == 13){
+				submitBtn.click()
+			}
+		})
 
 		// 利用后缀表达式进行运算
 		function calcu(str) {
