@@ -76,8 +76,8 @@
 				outputArea.innerHTML = res
 			}
 		})
-		
-		
+
+
 
 		// 利用后缀表达式进行运算
 		function calcu(str) {
@@ -200,7 +200,7 @@
 				}
 				// 函数名 直接进栈
 				else if(isFun(value)){
-					if(i == inputStr.length) {
+					if(i == inputStr.length - 1) {
 						warn('your input is not completed !')
 						return false
 					}
@@ -214,7 +214,7 @@
 				}
 				// 操作符判断后进栈
 				else if(isOperator(value)){
-					if(i == inputStr.length && value !== '!') {
+					if(i == inputStr.length - 1 && value !== '!') {
 						warn('your input is not completed !')
 						return false
 					}
