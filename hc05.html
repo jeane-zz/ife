@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>hc02</title>
+  <title>hc05</title>
   <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
   <style type="text/css"> 
     html, body {
@@ -46,11 +46,9 @@
     background: #fff;
     box-shadow:2px 2px 30px #aaa
   }
-    
-p img {
-  width: 100%;
-}
-
+    article {
+      margin-right: 410px;
+    }
     #pic {
       overflow: hidden;
     }
@@ -76,6 +74,10 @@ p img {
     right: 0;
     margin: auto;
   }
+p img {
+  width: 100%;
+}
+
 
   table {
     width: 100%;
@@ -89,23 +91,23 @@ p img {
   tfoot {
     background: #ddd;
   }
-
+    aside {
+      position: absolute;
+      right: 0;
+      top: -30px;
+      width: 350px;
+    }
   aside h2{
     border-left: 5px solid;
     padding-left: 20px;
   }
-  aside table tbody tr td:first-child {
-    text-align:right;
-    vertical-align: top;
-    border-collapse: collapse;
-    margin-right: 10px;
-  }
-  aside table tbody tr:last-of-type td button{
-    text-align: center;
-    width: 100%;
-    height: 30px;
-    background: #eea;
-  }
+    aside table tr td:first-child {
+      text-align: right;
+      font-size: 14px;
+    }
+    aside button {
+      width: 100%;
+    }
     footer {
       height: 50px;
       background: #add;
@@ -258,10 +260,10 @@ p img {
   <aside>
     <h2>标题</h2>
     <table>
-      <tbody>
+      <tbody >
         <tr>
-          <td><label>请输入邮箱地址: </label></td>
-          <td><input type="text" name="" placeholder="文本输入框"><p>邮箱地址请按要求格式输入</p></td>
+          <td ><label>请输入邮箱地址: </label></td>
+          <td ><input type="text" name="" placeholder="文本输入框"><p>邮箱地址请按要求格式输入</p></td>
         </tr>
         <tr>
           <td></td>
@@ -303,11 +305,10 @@ p img {
         </tr>
         <tr>
           <td> <label>个人描述：</label></td>
-          <td><textarea rows="5" cols="50" placeholder="请简单介绍自己"></textarea></td>
+          <td><textarea rows="5" cols="20" placeholder="请简单介绍自己"></textarea></td>
         </tr>
         <tr>
           <td colspan="2"><button>确认提交</button></td>
-          <td></td>
         </tr>
       </tbody>
     </table>
