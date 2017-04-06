@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>hc06</title>
+<style type="text/css">
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+  body, section, div, ul, li, a, p, span, h3, h4 {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "微软雅黑";
+  }
+  li {
+    list-style :none;
+  }
+  section {
+    width: 980px;
+    height: 1386px;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 0 44px;
+    position: relative;
+    margin: 0 auto;
+  }
+  header {
+    width: 892px;
+    height: 61px;
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+    border-bottom: 2px solid #938e8c;
+  }
+  .title {
+    width: 110px;
+    height: 61px;
+    background: #d55d5c;
+    color: #fff;
+    line-height: 100px;
+    text-align: center;
+  }
+  .title-right {
+    color: #d45d5c;
+    font-family: "黑体";
+    position: absolute;
+    right: 0;
+    bottom: 3px;
+  }
+  .sec1 {
+    height: 301px;
+    width: 892px;
+    abackground: #eac;
+    position: absolute;
+    top: 100px;
+    left: 44px;
+    margin-right: 48px;
+  }
+  .sec1-pic {
+    background-image: url(img/ti.jpg);
+    background-size: cover;
+    width: 641px;
+    height: 301px;
+    position: relative;
+  }
+  .green {
+    background: rgba(255,255,0,0.4);
+    width: 191px;
+    height: 301px;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .red {
+    background: rgba(255,0,0,0.4);
+    width: 191px;
+    height: 301px;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .sec1-content {
+    position: relative;
+    top: -301px;
+    left: 689px;
+    width: 203px;
+    height: 301px;
+    abackground: #ece;
+    border-top: 2px solid #cc8091;
+  }
+  .text {
+    padding: 8px 0;
+  }
+  .text h4 {
+    text-decoration: underline;
+    text-transform: uppercase;
+    font-weight: normal;
+    height: 40px;
+    line-height: 40px;
+    margin: 0;
+  }
+  .text h4:first-letter {
+    font-size: 24px;
+  }
+  .text p {
+    font-size: 12px;
+    font-family: "kaiti";
+    color: #676767;
+    line-height: 10px;
+  }
+  .number > h4{
+    font-size: 116px;
+    color: #75b86b;
+    height: 116px;
+    line-height: 116px;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    transform: skew(-10deg)
+  }
+  .css {
+    position: relative;
+  }
+  .css > h4{
+    font-size: 55px;
+    margin: 0;
+    color: #cc8091;
+    font-weight: normal;
+  }
+  .css p:nth-child(2) {
+    display: inline-block;
+    color: #cc8091;
+    position: absolute;
+    top: 25px;
+    left: 85px;
+  }
+  .css p:nth-child(3) {
+    display: inline-block;
+    color: #ccc;
+    position: absolute;
+    top: 40px;
+    left: 85px;
+  }
+  .sec2 {
+    height: 230px;
+    width: 641px;
+    abackground: #eca;
+    position: absolute;
+    bottom: 700px;
+    padding: 0;
+  }
+  .sec2 li {
+    float: left;
+    margin-right: 30px;
+  }
+  .sec2 h4 {
+    font-size: 16px;
+    text-decoration: underline;
+    font-weight: bold;
+    line-height: 20px;
+    height: 20px;
+    margin: 5px 0;
+  }
+  .what {
+    width: 35%;
+   
+  }
+  .what h4 {
+     color: #418c59;
+  }
+  .what p {
+    font-size: 12px;
+    color: #767777;
+    line-height: 16px;
+    font-family: "宋体";
+  }
+  .when {
+    width: 25%;
+  }
+  .when h4 {
+     color: #d2994f;
+  }
+  .when p {
+    font-size: 12px;
+    color: #231815;
+    line-height: 16px;
+    opacity:0.7;
+  }
+  .how {
+    width: 25%;
+  }
+  .how h4 {
+     color: #cc7680;
+  }
+  .how p {
+    font-size: 12px;
+    color: #231815;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .how span {
+    display: block;
+    font-size: 12px;
+    color: #231815;
+    line-height: 2;
+    height: 16px;
+  }
+  .how span em {
+    font-size: 12px;
+    color: #cd4a48;
+  }
+  .sec3 {
+    height: 600px;
+    width: 892px;
+    abackground: #cea;
+    position: absolute;
+    bottom: 115px;
+  }
+  .left {
+    width: 415px;
+    height: 100%;
+    abackground: #0Aa;
+    float: left;
+  }
+  .left-head {
+    height: 150px;
+    border-bottom: 2px solid #11456b;
+    margin-bottom: 10px;
+  }
+  .left-head h4 {
+    font-size: 42px;
+    font-family: "黑体";
+    font-weight: bold;
+    color: #11456b;
+    line-height: 45px;
+    text-transform: uppercase;
+  }
+  .left-head em {
+    font-size: 72px;
+    color: #f5e327;
+  }
+  .left-head p {
+    font-size: 33px;
+    color: #11456b;
+    font-family: "黑体";
+    font-weight: bold;
+  }
+  .left-body p {
+    font-size: 12px;
+    color: #767777;
+    line-height: 19px;
+    font-family: "微软雅黑";
+  }
+  .left-body p:not(:first-child) {
+    text-indent: 30px;
+  }
+  .left-body a {
+    display: inline-block;
+    width: 150px;
+    height: 300px;
+    background: #000;
+    float: right;
+    margin: 10px 0 10px 10px;
+    background-image: url(img/t.jpg);
+    background-size: cover;
+  }
+  .left-body p span {
+    color: #f5e327;
+    font-size: 70px;
+    float: left;
+    display: block;
+    height: 70px;
+    line-height: 70px;
+  }
+
+  .right {
+    width: 458px;
+    height: 100%;
+    abackground: #88a;
+    float: right;
+  }
+  .right-head {
+    width: 458px;
+    height: 275px;
+    background-image: url(img/del.jpg);
+    background-size: cover;
+    position: relative;
+    margin-bottom: 30px;
+  }
+  .right-title {
+    position: absolute;
+    background: rgba(0,0,0,0.4);
+    width: 458px;
+    height: 61px;
+    bottom: 0;
+  }
+  .right-title h4 {
+    display: inline-block;
+    font-size: 26px;
+    height: 44px;
+    line-height: 44px;
+    padding-left: 10px;
+    margin-left: 30px;
+    margin-top: 10px;
+    border-left: 3px solid #72b16a;
+    color: #fff;
+  }
+  .right-title span {
+    display: inline-block;
+    color: #72b16a;
+    font-style: italic;
+    letter-spacing: 140%
+  }
+  .right-body {
+    background: #eeeed6;
+    height: 318px;
+  }
+  .right-ul {
+    padding: 25px;
+  }
+  .right-ul li {
+    font-size: 16px;
+    line-height: 35px;
+    font-family: "宋体";
+    color: #5a5b5b;
+   
+  }
+  .right-ul li::before {
+    content: '';
+    display: inline-block;
+    abackground: #000;
+    width: 0px;
+    height: 0px;
+    border: 10px solid #0d4570;
+    border-color: transparent #0d4570 transparent transparent ;
+    border-width: 5px 10px;
+    transform:rotate(90deg);
+    position: relative;
+    top: -5px;
+  }
+  .right-ul li span {
+    font-size: 12px;
+    font-style: italic;
+    
+  }
+  .right-bottom {
+    height: 160px;
+    abackground: #eac;
+    position: relative;
+  }
+  .clender {
+    width: 260px;
+    height: 160px;
+    float: left;
+    background: #d55d5c;
+    position: relative;
+  }
+  .clender h4 {
+    font-size: 110px;
+    display: inline-block;
+    color: #fff;
+    height: 86px;
+    line-height: 86px;
+    margin: 42px 5px;
+    border-right: 2px solid #fff;
+  }
+  .clender p {
+    display: inline-block;
+    width: 160px;
+    position: relative;
+    top: -40px;
+  }
+  .clender p:nth-child(2){
+    text-transform: uppercase;
+    color: #fff;
+    font-size: 21px;
+    font-family: "黑体";
+    font-style: italic;
+  }
+  .clender p:nth-child(3){
+    color: #fff;
+    font-size: 12px;
+    font-family: "黑体";
+    left: 85px;
+    top: -75px;
+  }
+  .end {
+    font-size: 14px;
+    font-family: "黑体";
+    line-height: 16px;
+    font-style: italic;
+    color: #5a5b5b;
+    position: relative;
+    padding: 20px 10px;
+    right: -10px;
+  }
+
+  .end::before, .end::after {
+    display: inline-block;
+    font-size: 72px;
+    font-family: "黑体";
+    color: #d45d5c;
+    position: relative;
+    width: 50px;
+    height: 16px;
+    line-height: 16px;
+    vertical-align: bottom;
+    top: 30px;
+  }
+  .end::before {
+    content: '“';
+    left: -50px;
+    top: 15px;
+  }
+  .end::after {
+    content: '”';
+    left: 70px;
+  }
+  footer {
+    height: 61px;
+    width: 892px;
+    abackground: #aec;
+    position: absolute;
+    bottom: 0;
+    border-top: 1px solid #938e8c;
+  }
+  .foot-right {
+    font-size: 12px;
+    font-family: "黑体";
+    color: #d45d5c;
+    position: absolute;
+    right: 0;
+  }
+
+</style>
+
+
+
+</head>
+<body>
+  <section>
+    <header>
+      <div class="title">ife.baidu.com</div>
+      <div class="title-right">2017.04</div>
+    </header>
+    <div class="sec1">
+      <div class="sec1-pic">
+        <div class="green"></div>
+        <div class="red"></div>
+      </div>
+      <div class="sec1-content">
+        <div class="text">
+          <h4>About</h4>
+          <h4> Technologe</h4>
+          <p>About technologe about technologe about technologe</p>
+        </div>
+        <div class="number">
+          <h4>700</h4>
+          <div class="css">
+            <h4>3.2</h4>
+            <p>css</p>
+            <p>csscsscsscss</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="sec2">
+      <li class="what">
+        <h4>What</h4>
+        <p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+      </li>
+      <li class="when">
+        <h4>When</h4>
+        <p>前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+     
+      </li>
+      <li class="how">
+        <h4>How</h4>
+        <p>前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端</p>
+        <span>What-------- <em>40%</em></span>
+        <span>What-------- <em>30%</em></span>
+        <span>What-------- <em>30%</em></span>
+      </li>
+    </ul>
+    <div class="sec3">
+      <div class="left">
+        <div class="left-head">
+          <h4><em>The</em> technologe of front</h4>
+          <p>前端技术领域</p>
+        </div>
+        <div class="left-body">
+          <p><span>前</span>前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前前端前端前前端前端前端前端前端前端前端前前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前前端前端前前端前端前端前端前端前端前端前端前端前端前<a class="img"></a>端前端前端前端前前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前</p>
+          <P>前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前</P>
+          <P>前端前端前前端前端前端前端前端前端前端前端前前端前端前端前端前端前端前端前端前前端前端前端前端前端前端前端前端前前端前端前端前端前端前端前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前前端前端前前端前端前端前端前端前端前端前端前端前端前端前端前端前端前端前</P>
+        </div>
+      </div>
+      <div class="right">
+        <div class="right-head">
+          <div class="right-title">
+            <h4>前端技术</h4>
+            <span>前端技术前端技术</span>
+          </div>
+        </div>
+        <div class="right-body">
+          <ul class="right-ul">
+            <li>前端前端前端前端前端前端............ <span>前端</span></li>
+            <li>前端前端前端前端前端前端............ <span>前端</span></li>
+            <li>前端前端前端前端前端前端............ <span>前端</span></li>
+          </ul>
+          <div class="right-bottom">
+            <div class="clender">
+              <h4>0</h4>
+              <p>one two three four five</p>
+              <p>hello world hello world hello world</p>
+            </div>
+            <div class="end">hello world hello world hello world hello world hello world hello world hello world hello world </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="foot-right">ife.baidu.com</div>
+    </footer>
+  </section>
+</body>
+</html>
