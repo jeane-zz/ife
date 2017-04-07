@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>hc10</title>
+  <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
+  <style>
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
+  section {
+    padding: 20px;
+    display: flex;
+    border: 1px solid #eee;
+  }
+
+  div {
+    width: 150px;
+    border: 1px solid #f00;
+    margin: 20px;
+    flex-basis: 150px;
+    flex-shrink: 0
+  }
+  div:nth-child(1){
+    height: 120px;
+  }
+  div:nth-child(2){
+    height: 100px;
+  }
+  div:nth-child(3){
+    height: 40px;
+  }
+  div:nth-child(4){
+    height: 200px;
+    border-color: #00f;
+  }
+  /* 大于640 */
+  @media (min-width :640px) {
+    section {
+      align-items: center;
+    }
+  }
+
+  @media (max-width :640px) {
+    section {
+      align-items: flex-start;
+      flex-wrap:wrap;
+    }
+    div:nth-child(4) {
+      order: -1
+    }
+  }
+  </style>
+</head>
+<body>
+  <section>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </section>
+</body>
+</html>
