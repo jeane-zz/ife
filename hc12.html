@@ -14,6 +14,16 @@
     padding-top: 80px;
     background: #ddd;
   }
+    section {
+      width: 600px;
+      background: #fff;
+      border: 1px solid #ddd;
+      margin: 0 auto;
+      text-align: center;
+    }
+    table {
+      margin: 20px auto;
+    }
   thead {
     background: #000;
     color:#fff;
@@ -24,9 +34,40 @@
   tbody tr:nth-child(-n + 3){
     color: red;
   } 
+    .focus:active {
+      outline: none;
+      border: 5px solid #0ff;
+      border-radius:5px;
+    }
+    .bg{
+      position: relative;
+    }
+    .bg input {
+      display: inline-block;
+      position: relative;
+      top: -30px;
+      left: 190px;
+    }
+    .bg input:nth-child(1):checked ~ span{
+      background: #cc0;
+    }
+    .bg input:nth-child(2):checked ~ span{
+      background: #a0a;
+    }
+    .bg input:nth-child(3):checked ~ span{
+      background: #0fc;
+    }
+    .bgcolor{
+      display: inline-block;
+      width: 300px;
+      height: 200px;
+      background: #aec;
+      margin: 20px auto;
+    }
   </style>
 </head>
 <body>
+ <section>
  <table border="1">
     <thead>
       <td>排名</td>
@@ -87,10 +128,15 @@
     </tbody>
   </table>
   
-  <input type="text" name="">
-  <input type="text" name="">
-  
-  
+  <input type="text" name="" disabled>
+  <input type="text" name="" class="focus">
+  <div class="bg">
+    <input type="radio" name="changebg" id="" checked>
+    <input type="radio" name="changebg" id="">
+    <input type="radio" name="changebg" id="">   
+    <span class="bgcolor"></span>
+  </div>
+  </section> 
 </body>
 </html>
 
