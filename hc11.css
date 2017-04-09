@@ -176,6 +176,43 @@ header {
   height: 6.6rem;
   background: #fed;
   position: relative;
+  padding: 0 0.5rem;
+}
+.sec2-tl {
+  color: #6c6c6c;
+  font-size: 0.36rem;
+  height: 0.96rem;
+  line-height: 0.96rem;
+  border-bottom: 0.02rem solid #d4d4d4;
+}
+.sec2-cont {
+  height: 2.77rem;
+  padding: 0.35rem 0;
+  position: relative;
+}
+.sec2-pic {
+  display: inline-block;
+  width: 1.95rem;
+  height: 1.8rem;
+  border: 0.02rem solid #fdb431;
+  background-image: url(img/t4.png);
+  background-size:100% 100%;
+  position: absolute;
+}
+.sec2-ul {
+  awidth: 100%;
+  margin-left: 1.95rem;
+  position: relative;
+  atop: -1.8rem;
+}
+.sec2-ul li {
+  float: left;
+  width: 50%;
+  color: #5c5c5c;
+  text-align: center;
+  height: 0.9rem;
+  line-height: 0.9rem;
+  font-size: 0.25rem;
 }
 /* sec3 */
 .sec3 {
