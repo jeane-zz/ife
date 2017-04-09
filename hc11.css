@@ -174,7 +174,7 @@ header {
 .sec2 {
   width: 100%;
   height: 6.6rem;
-  background: #fed;
+  abackground: #fed;
   position: relative;
   padding: 0 0.5rem;
 }
@@ -217,14 +217,48 @@ header {
 /* sec3 */
 .sec3 {
   width: 100%;
-  height: 8.9rem;
-  background: #ee3;
+  height: 6.5rem;
+  abackground: #ee3;
   position: relative;
+}
+.art {
+  height: 2rem;
+  padding: 0 0.5rem;
+  border-bottom: 0.02rem solid #d4d4d4;
+}
+.art-pic {
+  display: inline-block;
+  width: 2.3rem;
+  height: 1.6rem;
+  margin: 0.2rem 0;
+  border: 0.02rem solid #e4e4e4;
+  background-image: url(img/t2.png);
+}
+.art-tl {
+  font-size: .35rem;
+  margin-left: 2.7rem;
+  position: relative;
+  top: -1.6rem;
+  color: #656565;
+}
+.art-time {
+  font-size: 0.3rem;
+  margin-left: 2.7rem;
+  position: relative;
+  top: -1.1rem;
+  color: #c6c6c6;
 }
 /* footer */
 footer {
   width: 100%;
   height: 1.1rem;
-  background: #e5d;
+  background: #91d4da;
   position: relative;
+}
+.copy {
+  height: 1.1rem;
+  line-height: 1.1rem;
+  font-size: 0.3rem;
+  color: #eee;
+  text-align: center;
 }
