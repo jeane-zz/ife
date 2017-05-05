@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>three.js正交投影相机</title>
+	<script src="three.js"></script>
+</head>
+<body onload="init()">
+	<canvas id="mainCanvas" width="400px" height="300px"></canvas>
+
+
+	<script type="text/javascript">
+		// 初始化函数
+		// 一个典型的Three.js程序至少要包括渲染器（Renderer）、场景（Scene）、照相机（Camera），以及你在场景中创建的物体。
+		function init() {
+			// Renderer
+			var renderer = new THREE.WebGLRenderer({
+				canvas: document.getElementById('mainCanvas')
+			})
+			
+			renderer.setClearColor(0x000000)
+			
+			// Scene
+			var scene = new THREE.Scene()
+
+			// Camera
+			// THREE.OrthographicCamera(left, right, top, bottom, near, far)
+			var camera = new THREE.OrthographicCamera(-2, 2, 1.5, -1.5, 1, 10)
+			camera.position.set(4, -3, 5)
+			camera.lookAt(new THREE.Vector3(0, 0, 0))
+
+			scene.add(camera)
+
+			// 创建一个1,2,3的长方体，并将其设置为红色
+			var cube = new THREE.Mesh(
+				new THREE.CubeGeometry(1, 1, 1),
+				new THREE.MeshBasicMaterial({
+					color: 0xff0000,
+					wireframe: true
+				})
+			)
+			scene.add(cube)
+
+			// 渲染
+			renderer.render(scene, camera)
+
+		}
+	</script>
+</body>
+</html>
