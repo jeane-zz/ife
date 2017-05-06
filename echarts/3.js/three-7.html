@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>three.js入门实例</title>
+	<title>three.js 球体</title>
 	<script src="three.js"></script>
 </head>
 <body onload="init()">
 	<canvas id="mainCanvas" width="400px" height="300px"></canvas>
-
 
 	<script type="text/javascript">
 		// 初始化函数
@@ -17,24 +16,34 @@
 			var renderer = new THREE.WebGLRenderer({
 				canvas: document.getElementById('mainCanvas')
 			})
+			
 			renderer.setClearColor(0x000000)
 			
 			// Scene
 			var scene = new THREE.Scene()
 
 			// Camera
-			var camera = new THREE.PerspectiveCamera(45, 4/3, 1, 1000)
+			// THREE.PerspectiveCamera(fov, aspect, near, far)
+			var camera = new THREE.PerspectiveCamera(45, 4 / 3, 1, 10)
 			camera.position.set(0, 0, 5)
+
 			scene.add(camera)
 
-			// 创建一个1,2,3的长方体，并将其设置为红色
-			var cube = new THREE.Mesh(
-				new THREE.CubeGeometry(1, 2, 3),
+			// 创建一个1,2的平面，并将其设置为红色
+			var sphere = new THREE.Mesh(
+				// 完整球体
+				// new THREE.SphereGeometry(2), 
+				// 纵向球体切片
+				// new THREE.SphereGeometry(2, 18, 12, Math.PI/3,  Math.PI/2),
+				// 横向向球体切片
+				// new THREE.SphereGeometry(2, 18, 12, 0,  Math.PI*2, Math.PI/3,  Math.PI/2),
+				new THREE.SphereGeometry(2, 18, 12, Math.PI/3,  Math.PI/2, Math.PI/3,  Math.PI/2),
 				new THREE.MeshBasicMaterial({
-					color: 0xff0000
+					color: 0xff0000,
+					wireframe: true
 				})
 			)
-			scene.add(cube)
+			scene.add(sphere)
 
 			// 渲染
 			renderer.render(scene, camera)

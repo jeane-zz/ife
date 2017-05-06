@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>three.js入门实例</title>
+	<title>three.js透视投影相机</title>
 	<script src="three.js"></script>
 </head>
 <body onload="init()">
@@ -17,21 +17,25 @@
 			var renderer = new THREE.WebGLRenderer({
 				canvas: document.getElementById('mainCanvas')
 			})
+			
 			renderer.setClearColor(0x000000)
 			
 			// Scene
 			var scene = new THREE.Scene()
 
 			// Camera
-			var camera = new THREE.PerspectiveCamera(45, 4/3, 1, 1000)
+			// THREE.PerspectiveCamera(fov, aspect, near, far)
+			var camera = new THREE.PerspectiveCamera(30, 4 / 3, 1, 10)
 			camera.position.set(0, 0, 5)
+
 			scene.add(camera)
 
 			// 创建一个1,2,3的长方体，并将其设置为红色
 			var cube = new THREE.Mesh(
-				new THREE.CubeGeometry(1, 2, 3),
+				new THREE.CubeGeometry(1, 1, 1),
 				new THREE.MeshBasicMaterial({
-					color: 0xff0000
+					color: 0xff0000,
+					wireframe: true
 				})
 			)
 			scene.add(cube)
