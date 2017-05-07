@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>three.js 圆柱 圆台</title>
+	<title>three.js 多面体</title>
 	<script src="three.js"></script>
 </head>
 <body onload="init()">
@@ -31,14 +31,13 @@
 
 			// 创建一个1,2的平面，并将其设置为红色
 			var cylinder = new THREE.Mesh(
-				// 完整圆柱， 在第四个参数较小时为多边柱体，最后一个参数为分段数目 
-				// new THREE.CylinderGeometry(1, 1, 3, 20, 2),
-				// 圆锥 修改第一二个参数为0
-				new THREE.CylinderGeometry(1, 0, 3, 20, 2),
-				// 完整圆柱， 在第四个参数较小时为多边柱体，最后一个参数确定是否含有顶和底的面 
-				// new THREE.CylinderGeometry(1, 1, 3, 20, 2, true),
-				// 圆台，第一二个参数不同即可 
-				// new THREE.CylinderGeometry(3, 1, 3, 20, 2),
+				// 正四面体，  
+				// new THREE.TetrahedronGeometry(1),
+				// 正八面体，  
+				// new THREE.OctahedronGeometry(1),
+				// 正二十面体，  
+				new THREE.IcosahedronGeometry(1),
+				
 				new THREE.MeshBasicMaterial({
 					color: 0xff0000,
 					wireframe: true
