@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义统计图表</title>
+	<script src="echarts.js"></script>
+	<style type="text/css">
+
+
+	</style>
+</head>
+<body>
+	<div id="bar" style="width: 600px;height: 400px;">	
+	</div>
+
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('bar'))
+		var option = {
+			title: [{
+				text: 'What\'s my credit score ? \n',
+				textStyle: {
+					fontWeight: 'bolder',
+					fontSize: 24
+				},
+				subtext: 'Puerto Rico, % decrease on a year earlier \n',
+				subtextStyle: {
+					color: '#c23',
+					fontSize: 18
+				},
+			}, {
+				subtext: 'sources: world back \n',
+				bottom: 0,
+				subtextStyle: {
+					fontSize: 20
+				}
+			}
+			],
+			tooltip: {},
+			legend: {
+				data: ['销量', '库存'],
+				left: 10,
+				top: 90,
+			},
+			grid: {
+				left: 10,
+				top: 120
+			},
+			xAxis: {
+				data: ['衬衫','羊毛衫','雪纺衫','裤子','高跟鞋','包包','袜子'],
+				axisLine: {
+					onZero: false,
+					lineStyle: {
+						color: 'red',
+						width: 3
+					}
+				},
+				axisTick: {
+					inside: true
+				}
+			},
+			yAxis: {
+				inverse: true,
+				position: 'right',
+				axisLine: {
+					show: false
+				}
+			},
+			color: ['#c23', '#749f83'],
+			series: [{
+				name: '销量',
+				type: 'bar', 
+				data: [3,56,7,43,12,15,35]
+			},{
+					name: '库存',
+					type: 'bar', 
+					data: [13,5,17,23,2,5,45]
+			}] 
+		}
+		myChart.setOption(option)
+	</script>
+
+
+	</script>
+</body>
+</html>
