@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>echarts练习 柱状图</title>
+	<script src="echarts.js"></script>
+	<style type="text/css">
+
+
+	</style>
+</head>
+<body>
+	<div id="bar" style="width: 600px;height: 400px;">	
+	</div>
+
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('bar'))
+		var option = {
+			title: {
+				text: '柱状图'
+			}, 
+			tooltip: {},
+			legend: {
+				data: ['销量']
+			},
+			xAxis: {
+				data: ['衬衫','羊毛衫','雪纺衫','裤子','高跟鞋','包包','袜子']
+			},
+			yAxis: {},
+			series: [{
+				name: '销量',
+				type: 'bar', 
+				data: [3,56,7,43,12,15,35]
+			}] 
+		}
+		myChart.setOption(option)
+	</script>
+
+	<div id="pie" style="width: 600px;height: 600px;">	
+	</div>
+
+	<script type="text/javascript">
+		var myChartPie = echarts.init(document.getElementById('pie'))
+		var optionPie = {
+			title:  {
+				text: '饼图'
+			},
+			series: [{
+				name: '访问来源',
+				type: 'pie', 
+				radius: '55%',
+				data: [
+					{value: 45, name: '视频广告'},
+					{value: 15, name: '联盟广告'},
+					{value: 6, name: '邮件广告'},
+					{value: 25, name: '视频营销'},
+					{value: 50, name: '直接访问'},
+					{value: 4, name: '搜索引擎'},
+					{value: 9, name: '搜索广告'},
+				]
+			}] 
+		}
+		myChartPie.setOption(optionPie)
+	</script>
+
+	<div id="line" style="width: 600px;height: 600px;">	
+	</div>
+
+	<script type="text/javascript">
+		var myChartLine = echarts.init(document.getElementById('line'))
+		var optionLine = {
+			title:  {
+				text: '折线图'
+			},
+			tooltip: {
+				trigger: 'axis'
+			},
+			legend: {
+				data: ['联盟广告',	'邮件广告',	'视频营销',	'直接访问',	'搜索引擎',	'搜索广告',]
+			},
+			grid: {
+				left: '3%',
+				right: '4%',
+				bottom: '3%',
+				containLabel: true
+			},
+			toolbox: {
+				feature: {
+					saveAsImage: {}
+				}
+			},
+			xAxis: {
+				type: 'category',
+				boundaryGap: false,
+				data: ['周一','周二','周三','周四','周五','周六','周日',]
+			},
+			yAxis: {
+				type: 'value'
+			},
+			series: [
+				{
+					name: '联盟广告',
+					type: 'line',
+					stack: '总量', 
+					data: [20, 32, 10, 14, 9, 20, 20]
+				},
+				{
+					name: '邮件广告',
+					type: 'line',
+					stack: '总量', 
+					data: [10, 132, 101, 13, 90, 23, 210]
+				},
+				{
+					name: '视频营销',
+					type: 'line',
+					stack: '总量', 
+					data: [125, 12, 1, 134, 90, 230, 210]
+				},
+				{
+					name: '直接访问',
+					type: 'line',
+					stack: '总量', 
+					data: [220, 132, 101, 34, 90, 210, 20]
+				},
+				{
+					name: '搜索引擎',
+					type: 'line',
+					stack: '总量', 
+					data: [20, 132, 201, 134, 90, 230, 210]
+				},
+				{
+					name: '搜索广告',
+					type: 'line',
+					stack: '总量', 
+					data: [130, 13, 151, 114, 90, 30, 210]
+				},
+			] 
+		}
+		myChartLine.setOption(optionLine)
+	</script>
+</body>
+</html>
